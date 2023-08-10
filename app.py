@@ -8,6 +8,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+#主程式
 import os
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 # Channel Secret
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
-# line_bot_api.push_message('U49e21b16a129f94711a5d55aa02192e7', TextSendMessage(text='你可以開始了'))
+line_bot_api.push_message('你自己的ID', TextSendMessage(text='你可以開始了'))
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -45,12 +46,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
+    line_bot_api.reply_message(event.reply_token,message)
 
-    print(event.source.user_id + '---------------------------')
-    # line_bot_api.reply_message(event.reply_token,message)
-
-
-#主程式
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
