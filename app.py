@@ -9,17 +9,8 @@ from linebot.exceptions import (
 from linebot.models import *
 
 import os
-from room import Room
-from util import check_players_id, removeAllRoomPlayersById
-from systemStatus import SystemStatus
-from systemMessage import SystemMessage
 
 app = Flask(__name__)
-
-#current room
-rooms = []
-# current system
-currentStatus = SystemStatus.NORMAL
 
 # Channel Access Token
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
