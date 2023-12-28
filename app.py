@@ -1,3 +1,5 @@
+from crypt import methods
+import re
 from flask import Flask, request, abort
 
 from linebot import (
@@ -20,6 +22,9 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 # Channel Secret
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
+@app.route("/alive",methods=['POST','GET'])
+def alive():
+    return alive
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -31,7 +36,6 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-    print('aaa')
 
     # handle webhook body
     try:
