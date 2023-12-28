@@ -209,7 +209,7 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
 
     if message.text == '商品':
-        message = FlexSendMessage(alt_text="hello", contents=FlexContainer.from_json(generate_goods_json()))
+        message = FlexSendMessage(alt_text="hello", contents=generate_goods_json())
         line_bot_api.reply_message(
             event.reply_token,
             message
