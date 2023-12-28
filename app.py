@@ -22,7 +22,7 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 # Channel Secret
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
-@app.route("/alive",methods=['POST','GET'])
+@app.route("/alive",methods=['GET'])
 def alive():
     return alive
 
