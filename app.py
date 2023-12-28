@@ -1,5 +1,5 @@
 import re
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 from flask import Flask, request, abort
 
@@ -19,7 +19,7 @@ import os
 app = Flask(__name__)
 
 # 部署上render.com時要註解
-load_dotenv('dev.env')
+#load_dotenv('dev.env')
 
 # Channel Access Token
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
@@ -208,7 +208,7 @@ def generate_goods_json():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
-    
+
     if message == '商品':
         message = FlexMessage(alt_text="hello", contents=FlexContainer.from_json(generate_goods_json()))
         line_bot_api.reply_message(
