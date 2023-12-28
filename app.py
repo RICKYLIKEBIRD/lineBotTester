@@ -6,7 +6,7 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import FlexSendMessage, FlexContainer, TextSendMessage
+from linebot.models import FlexSendMessage, FlexContainer, TextSendMessage, MessageEvent
 
 
 import logging
