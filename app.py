@@ -1,6 +1,3 @@
-import re
-# from dotenv import load_dotenv
-
 from flask import Flask, request, abort
 
 from linebot import (
@@ -9,7 +6,8 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import *
+from linebot.models import FlexSendMessage, FlexContainer, TextSendMessage
+
 
 import logging
 
@@ -19,7 +17,8 @@ import os
 app = Flask(__name__)
 
 # 部署上render.com時要註解
-#load_dotenv('dev.env')
+#from dotenv import load_dotenv
+# load_dotenv('dev.env')
 
 # Channel Access Token
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
@@ -210,12 +209,10 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
 
     if message.text == '商品':
-        message = FlexMessage(alt_text="hello", contents=FlexContainer.from_json(generate_goods_json()))
+        message = FlexSendMessage(alt_text="hello", contents=FlexContainer.from_json(generate_goods_json()))
         line_bot_api.reply_message(
-            ReplyMessageRequest(
-                reply_token=event.reply_token,
-                messages=[message]
-            )
+            event.reply_token,
+            message
         )
     app.logger.info("show event: ")
     app.logger.info(event)
