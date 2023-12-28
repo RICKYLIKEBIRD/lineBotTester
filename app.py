@@ -6,7 +6,7 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import FlexSendMessage, FlexContainer, TextSendMessage, MessageEvent
+from linebot.models import FlexSendMessage, FlexContainer, TextSendMessage, MessageEvent, TextMessage
 
 
 import logging
@@ -17,7 +17,7 @@ import os
 app = Flask(__name__)
 
 # 部署上render.com時要註解
-#from dotenv import load_dotenv
+# from dotenv import load_dotenv
 # load_dotenv('dev.env')
 
 # Channel Access Token
